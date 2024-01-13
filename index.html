@@ -7,25 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
-    <!-- <br>
-    <img src="..." class="img-thumbnail" alt="...">
-    <br>
-    <div class="border col-5">
-        <div class="row">
-            <div class="col-md">
-                <form>
-                    <div class="form-group">
-                        <label>name:</label>
-                        <br>
-                        <label>gender:</label>
-                        <br>
-                        <label>date:</label>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <button type="submit" id="btn">購入する</button>
-    </div> -->
     <div class="mx-auto" style="width: 200px;">
     <br>
     <img src="..." class="img-thumbnail" alt="...">
@@ -87,6 +68,24 @@
                 $(".email").html(data.results[0].email);
             }
         });
+                function showAfterBirth(bYear, bMonth, bDay){
+//   / 現在日時と誕生日日時のDateを取得
+  var dateNow = new Date();
+  var dateBirth = new Date(bYear, bMonth-1, bDay);
+ 
+//   / 現在日時までのミリ秒と日数を計算
+  var timeTillNow = dateNow.getTime() - dateBirth.getTime(); 
+  var daysTillNow = timeTillNow / (1000 * 3600 * 24); 
+  
+//   / 年齢の年部分・月部分・日部分をそれぞれ計算
+  const DAYS_PER_MONTH = 365 / 12;
+  var ageY = Math.floor(daysTillNow / 365);
+  var ageM = Math.floor((daysTillNow - 365*ageY) / DAYS_PER_MONTH);
+  var ageD = Math.floor((daysTillNow - 365*ageY - DAYS_PER_MONTH*ageM));
+$('birth').html(
+    + "生後"+ageY+"年"+ageM+"ヶ月"+"もののワインです"
+);
+}
     </script>
-   </body>
+</body>
 </html>
