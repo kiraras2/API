@@ -73,7 +73,7 @@
                 let [year, month] = date.split("-");
                 console.log(year);
                 console.log(month);
-                $(".birth").html("生後"+ageY+"年"+ageM+"ヶ月"+"もののワインです");
+                $(".birth").html(showAfterBirth(year, month))
             }
         });
         function showAfterBirth(year, month){
@@ -88,6 +88,7 @@
   const DAYS_PER_MONTH = 365 / 12;
   var ageY = Math.floor(daysTillNow / 365);
   var ageM = Math.floor((daysTillNow - 365*ageY) / DAYS_PER_MONTH);
+  $(".birth").html(ageY+"年"+ageM+"ヶ月"+"もののワインです");
         }
     </script>
 </body>
