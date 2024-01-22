@@ -21,7 +21,7 @@
   <p class="dob"></p>
   <p class="birth"></p>
   <div class="text-center">
-    <img src="assets/images/brett-jordan-fAz5Cf1ajPM-unsplash.jpg" alt="...">
+    <img src="assets/images/brett-jordan-fAz5Cf1ajPM-unsplash.jpg" class="img-fluid" alt="...">
   </div>
 </form>
 </div>
@@ -45,7 +45,6 @@
             </div>
         </div>
     </div>
-   <!-- <div class="birth"></div> -->
     <div class="row">
         <div class="col-12">
             <a class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal" href="#">購入する</a>
@@ -63,7 +62,7 @@
       url: 'https://randomuser.me/api/',
       dataType: 'json',
       success: function(data) {
-                $("img").attr("src", data.results[0].picture.medium);
+                $(".img-thumbnail").html(data.results[0].picture.medium);
                 $(".name").html(data.results[0].name.first + " ");
                 $(".name").append(data.results[0].name.last);
                 $(".gender").html(data.results[0].gender);
@@ -76,7 +75,7 @@
                 let [year, month] = date.split("-");
                 console.log(year);
                 console.log(month);
-                $(".birth").html(showAfterBirth(year, month))
+                showAfterBirth(year, month)
             }
         });
         function showAfterBirth(year, month){
