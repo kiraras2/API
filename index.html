@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>API</title>
+    <link rel="stylesheet" href="./assets/stylesheets/style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
@@ -89,18 +90,18 @@
   const DAYS_PER_MONTH = 365 / 12;
   let ageY = Math.floor(daysTillNow / 365);
   let ageM = Math.floor((daysTillNow - 365*ageY) / DAYS_PER_MONTH);
-  $(".birth").html(ageY+"年"+ageM+"ヶ月"+"もののワインです");
+  $(".birth").html(ageY + "年" + ageM + "ヶ月" + "もののワインです");
   let age = ageY;
 if (age >= 20 && age < 30) {
-  $(".wine").html("img-fluid 1");
+  $(".1").show();
 }else if (age >= 30 && age < 40) {
-  $(".wine").html("img-fluid 2");
+  $(".2").show();
 }else if (age >= 40 && age < 50) {
-  $(".wine").html("img-fluid 3");
+  $(".3").show();
 }else if (age >= 50 && age < 60) {
-  $(".wine").html("img-fluid 4");
+  $(".4").show();
 } else {
-  $(".wine").html("img-fluid 5");
+  $(".5").show();
 }
         }
 
