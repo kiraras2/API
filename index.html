@@ -3,10 +3,107 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>API</title>
+    <link rel="stylesheet" href="./assets/stylesheets/style.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  </body>
+    <div class="mx-auto" style="width: 200px;">
+    <br>
+    <img src="..." class="img-thumbnail" alt="...">
+    <br>
+    <div class="form-group">
+<div id="info">
+  <label>name</label>
+  <p class="name"></p>
+  <label>gender</label>
+  <p class="gender"></p>
+  <label>date</label>
+  <p class="dob"></p>
+  <p class="birth"></p>
+  <div class="wine">
+    <img src="assets/images/brett-jordan-fAz5Cf1ajPM-unsplash.jpg" class="img-fluid 1" alt="...">
+    <img src="assets/images/bundo-kim-_YX4qFzkNtY-unsplash.jpg" class="img-fluid 2" alt="...">
+    <img src="assets/images/j-mckinney-zIo9Fbh8qJc-unsplash.jpg" class="img-fluid 3" alt="...">
+    <img src="assets/images/lucas-santos--PWwgG7F3Dk-unsplash.jpg" class="img-fluid 4" alt="...">
+    <img src="assets/images/tony-flood-Ifm8MA4_4sw-unsplash.jpg" class="img-fluid 5" alt="...">
+  </div>
+</form>
+</div>
+  <div id="app" class="container">
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                      <label>お届け先:</label>
+                      <p class="nat"></p>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <label>連絡先:</label>
+                  <p class="email"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal" href="#">購入する</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script>
+                $.ajax({
+      url: 'https://randomuser.me/api/',
+      dataType: 'json',
+      success: function(data) {
+                $(".img-thumbnail").attr("src", data.results[0].picture.medium);
+                $(".name").html(data.results[0].name.first + " ");
+                $(".name").append(data.results[0].name.last);
+                $(".gender").html(data.results[0].gender);
+                let aa = data.results[0].dob.date;
+                let dobDateWithoutTime = aa.split('T')[0];
+                $(".dob").html(dobDateWithoutTime);
+                $(".nat").html(data.results[0].nat);
+                $(".email").html(data.results[0].email);
+                let date = dobDateWithoutTime;
+                let [year, month] = date.split("-");
+                console.log(year);
+                console.log(month);
+                showAfterBirth(year, month)
+            }
+        });
+        function showAfterBirth(year, month){
+  let dateNow = new Date();
+  let dateBirth = new Date(year, month-1);
+  let timeTillNow = dateNow.getTime() - dateBirth.getTime();
+  let daysTillNow = timeTillNow / (1000 * 3600 * 24);
+  const DAYS_PER_MONTH = 365 / 12;
+  let ageY = Math.floor(daysTillNow / 365);
+  let ageM = Math.floor((daysTillNow - 365*ageY) / DAYS_PER_MONTH);
+  $(".birth").html(ageY + "年" + ageM + "ヶ月" + "もののワインです");
+  let age = ageY;
+if (age >= 20 && age < 30) {
+  $(".1").show();
+}else if (age >= 30 && age < 40) {
+  $(".2").show();
+}else if (age >= 40 && age < 50) {
+  $(".3").show();
+}else if (age >= 50 && age < 60) {
+  $(".4").show();
+} else {
+  $(".5").show();
+}
+        }
+    </script>
+</body>
 </html>
